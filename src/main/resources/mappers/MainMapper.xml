@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.happyjob.study.repository.main.MainMapper"> 
+     <select id="calendarList" parameterType="kr.happyjob.study.vo.main.request.CalendarRequest" resultType="kr.happyjob.study.vo.main.response.CalendarVo">
+		 SELECT b.folder_seq    AS folder_seq   -- 폴더번호
+		 	  , c.contents_seq  AS contents_seq -- 글번호	
+		 	  ,	c.title			AS title		-- 글제목
+		 	  ,	c.create_date	AS create_date	-- 글생성일자
+		   FROM tb_userinfo a
+	 INNER JOIN tb_folder b
+	         ON a.member_seq = b.member_seq
+	 INNER JOIN tb_contents c
+	         ON b.folder_seq = c.folder_seq
+	      WHERE 1=1
+	      <if test="member_seq != null and member_seq != ''">
+			AND a.member_seq = #{member_seq}			  
+		  </if>
+	 </select>
+</mapper>
