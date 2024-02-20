@@ -27,6 +27,11 @@ public class AuthServiceImpl {
         return this.authMapper.getUserinfoList(paramMap);
     }
 
+
+    public UserinfoModel getUserinfoByLoginID(String loginID) {
+        return this.authMapper.getUserinfoByLoginID(loginID);
+    }
+
     public void updateUserinfo(UserinfoModel user) {
         this.authMapper.updateUserinfo(user);
     }
@@ -37,6 +42,22 @@ public class AuthServiceImpl {
 
     public void deleteUserinfo(Long memberSeq) {
         this.authMapper.deleteUserinfo(memberSeq);
+    }
+
+
+    public UserinfoModel login(String loginID, String password) {
+        UserinfoModel result = null;
+        try{
+            UserinfoModel user = this.authMapper.getUserinfoByLoginID(loginID);
+            System.out.println("user = " + user);
+            if(password != null && password.equals(user.getPassword())) {
+                result = user;
+            }
+        } catch (Exception e) {
+            System.out.println("############################### login catch ##########################");
+            logger.debug(e);
+        }
+        return result;
     }
 
 
