@@ -7,15 +7,13 @@ import kr.happyjob.study.vo.contents.ContentsModel;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api")
 public class AuthController {
 	
 	// Set logger
@@ -51,14 +49,13 @@ public class AuthController {
 			if(user != null) {
 				resultMap.put("token", jwtProvider.createToken(user.getName()));
 				resultMap.put("result", true);
+				return resultMap;
 			}
-			System.out.println("resultMap = " + resultMap);
-			return resultMap;
 		} catch (Exception e) {
-			resultMap.put("result", false);
-			System.out.println("resultMap = " + resultMap);
-			return resultMap;
+			logger.debug(e);
 		}
+		resultMap.put("result", false);
+		return resultMap;
 	}
 
 
