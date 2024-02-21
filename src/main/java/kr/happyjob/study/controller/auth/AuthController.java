@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,8 +48,13 @@ public class AuthController {
 		try {
 			UserinfoModel user = authService.login(loginID, password);
 			if(user != null) {
-				resultMap.put("token", jwtProvider.createToken(user.getName()));
+				resultMap.put("accessToken", jwtProvider.createToken(user.getName()));
+				resultMap.put("refreshToken", "hello world");
+				resultMap.put("memberSeq", user.getMemberSeq());
+				resultMap.put("loginID", user.getLoginID());
+				resultMap.put("name", user.getName());
 				resultMap.put("result", true);
+				resultMap.put("expireTime", new Date());
 				return resultMap;
 			}
 		} catch (Exception e) {
