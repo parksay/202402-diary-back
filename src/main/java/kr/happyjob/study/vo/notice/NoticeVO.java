@@ -10,6 +10,9 @@ public class NoticeVO {
 	// 공지사항 노출 번호
 	private int rowNum;
 
+	// 공지사항 작성자
+	private String loginID;
+	
 	// 공지사항 제목
 	private String title;
 	
@@ -26,7 +29,7 @@ public class NoticeVO {
 	private Date create_date;
 	
 	// 로그인 seq
-	private String member_seq;
+	private int member_seq;
 	
 	// 로그인 유저 권한
 	private String user_status;
@@ -72,6 +75,20 @@ public class NoticeVO {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	/**
+	 * @return the loginID
+	 */
+	public String getLoginID() {
+		return loginID;
+	}
+	
+	/**
+	 * @param loginID the title to set
+	 */
+	public void setLoginID(String loginID) {
+		this.loginID = loginID;
 	}
 
 	/**
@@ -134,14 +151,14 @@ public class NoticeVO {
 	/**
 	 * @return the member_seq
 	 */
-	public String getMember_seq() {
+	public int getMember_seq() {
 		return member_seq;
 	}
 	
 	/**
 	 * @param member_seq the member_seq to set
 	 */
-	public void setMember_seq(String member_seq) {
+	public void setMember_seq(int member_seq) {
 		this.member_seq = member_seq;
 	}
 	

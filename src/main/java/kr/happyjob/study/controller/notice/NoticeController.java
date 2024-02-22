@@ -36,11 +36,8 @@ public class NoticeController {
 		int result;
 		if(service.maxSEQ() == null) {
 			result = 0;
-			System.out.println(service.maxSEQ() + "22222222222222222");
-			System.out.println(result + "3333333333333333333");
 		}else {
 			result = service.maxSEQ();
-			System.out.println(result + "111111111111111111");
 		}
 		return result;
 	}
