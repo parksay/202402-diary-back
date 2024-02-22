@@ -1,9 +1,8 @@
 package kr.happyjob.study.controller.auth;
 
 import kr.happyjob.study.service.auth.AuthServiceImpl;
-import kr.happyjob.study.service.auth.JwtTokenProvider;
+import kr.happyjob.study.jwt.JwtTokenProvider;
 import kr.happyjob.study.vo.auth.UserinfoModel;
-import kr.happyjob.study.vo.contents.ContentsModel;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

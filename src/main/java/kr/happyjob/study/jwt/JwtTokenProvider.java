@@ -1,4 +1,4 @@
-package kr.happyjob.study.service.auth;
+package kr.happyjob.study.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
