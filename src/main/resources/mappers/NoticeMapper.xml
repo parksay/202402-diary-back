@@ -5,7 +5,7 @@
 			resultType="kr.happyjob.study.vo.notice.NoticeVO">
 		<![CDATA[ SELECT a.*,@ROWNUM:=@ROWNUM+1 AS rowNum
 
-		FROM tb_notice a , (SELECT @ROWNUM:=0) as R ORDER BY create_date ]]>
+		FROM tb_notice a , (SELECT @ROWNUM:=0) as R ORDER BY notice_seq desc ]]>
 	</select>
 
 	<select id="oneNotice"
@@ -36,7 +36,7 @@
 				   , title
 				   , contents
 				   , create_date
-		) values( #{notice_seq}
+		) values(  #{notice_seq}
 				   , #{member_seq}
 				   , #{user_status}
 				   , #{title}
