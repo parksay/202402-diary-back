@@ -10,8 +10,14 @@ public class ContentsModel {
 	private String del_date;
 	private String create_date;
 	private String update_date;
+	private int member_seq;
 	
-	
+	public int getMember_seq() {
+		return member_seq;
+	}
+	public void setMember_seq(int member_seq) {
+		this.member_seq = member_seq;
+	}
 	public int getContents_seq() {
 		return contents_seq;
 	}
@@ -67,6 +73,5 @@ public class ContentsModel {
 				+ ", title=" + title + ", is_del=" + is_del + ", del_date=" + del_date + ", create_date=" + create_date
 				+ ", update_date=" + update_date + "]";
 	}
-	
 	
 }

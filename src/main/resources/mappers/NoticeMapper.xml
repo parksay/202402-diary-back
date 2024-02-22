@@ -3,9 +3,9 @@
 <mapper namespace="kr.happyjob.study.repository.notice.NoticeMapper">
 	<select id="noticeList"
 			resultType="kr.happyjob.study.vo.notice.NoticeVO">
-		<![CDATA[ SELECT a.*,@ROWNUM:=@ROWNUM+1 AS rowNum
-
-		FROM tb_notice a , (SELECT @ROWNUM:=0) as R ORDER BY create_date ]]>
+		<![CDATA[ SELECT a.*, b.loginID,@ROWNUM:=@ROWNUM+1 AS rowNum
+		FROM tb_notice a join tb_userinfo b on a.member_seq = b.member_seq 
+		,(SELECT @ROWNUM:=0) as R ORDER BY notice_seq desc ]]>
 	</select>
 
 	<select id="oneNotice"
@@ -36,7 +36,7 @@
 				   , title
 				   , contents
 				   , create_date
-		) values( #{notice_seq}
+		) values(  #{notice_seq}
 				   , #{member_seq}
 				   , #{user_status}
 				   , #{title}
