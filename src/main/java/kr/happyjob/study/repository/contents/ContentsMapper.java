@@ -9,26 +9,15 @@ import kr.happyjob.study.vo.contents.ContentsModel;
 
 @Mapper
 public interface ContentsMapper {
-		
-	// 공지사항 리스트 조회
-	public List<ContentsModel> contentsList(Map<String, Object> paramMap)throws Exception ;
 	
-	// 공지사항 목록 카운트 조회
+	public ContentsModel contentsDetail(ContentsModel params);
+	
 	public int contentsCnt(Map<String, Object> paramMap)throws Exception ;
+
+	public int insertContents(Map<String, Object> paramMap);
+
+	public int updateContents(Map<String, Object> paramMap);
 	
-	/*
-	 * // 공지사항 단건 조회 public NoticeModel noticeDetail(Map<String, Object>
-	 * paramMap)throws Exception ;
-	 * 
-	 * // 공지사항 저장 public int insertNotice(Map<String, Object> paramMap) throws
-	 * Exception;
-	 * 
-	 * // 공지사항 수정 public int updateNotice(Map<String, Object> paramMap) throws
-	 * Exception;
-	 * 
-	 * // 공지사항 삭제 public int deleteNotice(Map<String, Object> paramMap) throws
-	 * Exception;
-	 */	
 	}
 
 

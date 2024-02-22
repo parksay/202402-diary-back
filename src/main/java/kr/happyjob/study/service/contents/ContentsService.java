@@ -22,27 +22,22 @@ public class ContentsService {
 	   
 	@Autowired
 	private ContentsMapper contentsMapper;
-	
-	public List<ContentsModel> contentsList(Map<String, Object> paramMap) throws Exception{
-		return contentsMapper.contentsList(paramMap);
-	}
 
 	public int contentsCnt(Map<String, Object> paramMap) throws Exception {
 		return contentsMapper.contentsCnt(paramMap);
 	}
-	
-	/*
-	 * // 공지사항 단건 조회 public NoticeModel noticeDetail(Map<String, Object>
-	 * paramMap)throws Exception{ return noticeMapper.noticeDetail(paramMap); }
-	 * 
-	 * // 공지사항 저장 public int insertNotice(Map<String, Object> paramMap) throws
-	 * Exception{ return noticeMapper.insertNotice(paramMap); }
-	 * 
-	 * // 공지사항 수정 public int updateNotice(Map<String, Object> paramMap) throws
-	 * Exception{ return noticeMapper.updateNotice(paramMap); }
-	 * 
-	 * // 공지사항 삭제 public int deleteNotice(Map<String, Object> paramMap) throws
-	 * Exception{ return noticeMapper.deleteNotice(paramMap); }
-	 */
+
+	public ContentsModel contentsDetail(ContentsModel params) {
+		return contentsMapper.contentsDetail(params);
+	}
+
+	public int insertContents(Map<String, Object> paramMap) {
+		return contentsMapper.insertContents(paramMap);		
+	}
+
+	public int updateContents(Map<String, Object> paramMap) {
+		return contentsMapper.updateContents(paramMap);				
+	}
+
 
 }
