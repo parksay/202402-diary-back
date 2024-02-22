@@ -3,51 +3,58 @@
 <mapper namespace="kr.happyjob.study.repository.notice.NoticeMapper">
 	<select id="noticeList"
 			resultType="kr.happyjob.study.vo.notice.NoticeVO">
+		<![CDATA[ SELECT a.*,@ROWNUM:=@ROWNUM+1 AS rowNum
+
+		FROM tb_notice a , (SELECT @ROWNUM:=0) as R ORDER BY create_date ]]>
+	</select>
+
+	<select id="oneNotice"
+			resultType="kr.happyjob.study.vo.notice.NoticeVO">
 		SELECT *
           FROM tb_notice
-	  ORDER BY create_date
+	  where notice_seq = #{notice_seq}
 			
 	</select>
 	
-<!--	<select id="folderSubView" -->
-<!--			parameterType="java.util.Map" -->
-<!--			resultType="kr.happyjob.study.vo.folder.FolderChildModel">-->
-<!--		SELECT tc.contents_seq -->
-<!--			   , tc.folder_seq-->
-<!--			   , tc.title-->
-<!--		  FROM tb_contents tc -->
-<!--		 WHERE tc.folder_seq = #{folder_seq}-->
-<!--		   AND (tc.is_del != 'Y' || tc.is_del is null)-->
-<!--		   AND tc.del_date IS NULL -->
-<!--      ORDER BY create_date-->
-<!--	</select>	-->
+	<select id="maxSEQ" resultType="int">
+		select max(notice_seq) from tb_notice
+	</select>
 	
-<!--	<insert id="folderCreate" parameterType="java.util.Map" >-->
-<!--		INSERT INTO	tb_folder (-->
-<!--				   folder_seq-->
-<!--				   , member_seq-->
-<!--				   , parent_folder_seq-->
-<!--				   , folder_name-->
-<!--				   , create_date-->
-<!--				   , update_date-->
-<!--		)   -->
-<!--			SELECT MAX(folder_seq)+1 -->
-<!--				   , #{member_seq}-->
-<!--				   , MAX(folder_seq)+1-->
-<!--				   , #{folder_name}-->
-<!--				   , CURRENT_TIMESTAMP-->
-<!--				   , CURRENT_TIMESTAMP-->
-<!--			  FROM tb_folder-->
-<!--	</insert>-->
+	<select id="minSEQ" resultType="int">
+		select min(notice_seq) from tb_notice
+	</select>
 	
-<!--	<update id = "folderModify" parameterType="java.util.Map">-->
-<!--		UPDATE tb_folder-->
-<!--		   SET folder_name = #{folder_name}-->
-<!--		 WHERE folder_seq = #{folder_seq}-->
-<!--	</update>-->
+	<select id="count" resultType="int">
+		select count(*) from tb_notice
+	</select>
 	
-<!--	<delete id = "folderDelete" parameterType="java.util.Map">-->
-<!--		DELETE FROM tb_folder-->
-<!--		      WHERE folder_seq = #{folder_seq}-->
-<!--	</delete>-->
+	<insert id="noticeWrite">
+		insert into	tb_notice (
+				   notice_seq
+				   , member_seq
+				   , user_status
+				   , title
+				   , contents
+				   , create_date
+		) values( #{notice_seq}
+				   , #{member_seq}
+				   , #{user_status}
+				   , #{title}
+				   , #{contents}
+				   , date_format(now(), '%Y%m%d')
+			  ) 
+	</insert>
+	
+	<update id = "noticeUpdate">
+		UPDATE tb_notice
+		   SET title = #{title}
+		     , contents = #{contents}
+		     , create_date = date_format(now(), '%Y%m%d')
+		 WHERE notice_seq = #{notice_seq}
+	</update>
+	
+	<delete id = "noticeDelete">
+		delete from tb_notice WHERE notice_seq = #{notice_seq}
+	</delete>
+	
 </mapper>

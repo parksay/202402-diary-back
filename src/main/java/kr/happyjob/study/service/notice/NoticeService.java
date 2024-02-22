@@ -17,4 +17,25 @@ public class NoticeService {
 	public List<NoticeVO> noticeList(){
 		return noticeMapper.noticeList();
 	}
+	public NoticeVO oneNotice(int notice_seq){
+		return noticeMapper.oneNotice(notice_seq);
+	}
+	public Integer maxSEQ(){
+		return noticeMapper.maxSEQ();
+	}
+	public Integer minSEQ(){
+		return noticeMapper.minSEQ();
+	}
+	public int count(){
+		return noticeMapper.count();
+	}
+	public int noticeWrite(NoticeVO param){
+		return noticeMapper.noticeWrite(param);
+	}
+	public int noticeUpdate(NoticeVO param){
+		return noticeMapper.noticeUpdate(param);
+	}
+	public int noticeDelete(NoticeVO param){
+		return noticeMapper.noticeDelete(param);
+	}
 }

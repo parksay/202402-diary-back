@@ -1,10 +1,14 @@
 package kr.happyjob.study.vo.notice;
 
+import java.sql.Date;
 
 public class NoticeVO {
 
 	// 공지사항 ID
-	private String notice_seq;
+	private int notice_seq;
+	
+	// 공지사항 노출 번호
+	private int rowNum;
 
 	// 공지사항 제목
 	private String title;
@@ -16,10 +20,10 @@ public class NoticeVO {
 	private String is_del;
 	
 	// 공지사항 삭제날짜
-	private String del_date;
+	private Date del_date;
 	
 	// 공지사항 생성날짜
-	private String create_date;
+	private Date create_date;
 	
 	// 로그인 seq
 	private String member_seq;
@@ -31,15 +35,29 @@ public class NoticeVO {
 	/**
 	 * @return the notice_seq
 	 */
-	public String getNotice_seq() {
+	public int getNotice_seq() {
 		return notice_seq;
 	}
 
 	/**
 	 * @param notice_seq the notice_seq to set
 	 */
-	public void setNotice_seq(String notice_seq) {
+	public void setNotice_seq(int notice_seq) {
 		this.notice_seq = notice_seq;
+	}
+
+	/**
+	 * @return the rowNum
+	 */
+	public int getRowNum() {
+		return rowNum;
+	}
+	
+	/**
+	 * @param notice_seq the rowNum to set
+	 */
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
 	}
 
 	/**
@@ -87,28 +105,28 @@ public class NoticeVO {
 	/**
 	 * @return the del_date
 	 */
-	public String getDel_date() {
+	public Date getDel_date() {
 		return del_date;
 	}
 	
 	/**
 	 * @param del_date the del_date to set
 	 */
-	public void setDel_date(String del_date) {
+	public void setDel_date(Date del_date) {
 		this.del_date = del_date;
 	}
 	
 	/**
 	 * @return the create_date
 	 */
-	public String getCreate_date() {
+	public Date getCreate_date() {
 		return create_date;
 	}
 	
 	/**
 	 * @param create_date the create_date to set
 	 */
-	public void setCreate_date(String create_date) {
+	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;
 	}
 	
