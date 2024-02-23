@@ -36,7 +36,7 @@ public class ContentsController {
 	// 글 상세조회 
 	@RequestMapping("/api/contentsDetail")
 	@ResponseBody
-	public ContentsModel contentsDetail(@RequestBody ContentsModel params, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ContentsModel contentsDetail(@RequestBody ContentsModel params, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 	    
 	    logger.info("   - params : " + params);
 
@@ -48,7 +48,7 @@ public class ContentsController {
 	
 	// 글 등록, 업데이트
 	@RequestMapping("/api/contentsSave")
-	public Map<String, Object> contentssave(@RequestBody Map<String, Object> paramMap){
+	public Map<String, Object> contentssave(@RequestBody Map<String, Object> paramMap)throws Exception{
 
 				logger.info("+ Start " + className + ".contentssave");
 				logger.info("   - paramMap : " + paramMap);
