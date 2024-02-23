@@ -57,6 +57,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             String token = request.getHeader("Authorization");
             if(!(token != null && token.startsWith("Bearer ") && jwtProvider.isValidToken(token.substring(7)))) {
                 // 유효한 토큰이 아닌 경우
+                logger.info("####################################### auth check ###################################");
+                logger.info(token);
                 response.sendError(403, "로그인 후 이용해주세요");
                 return;
             }
