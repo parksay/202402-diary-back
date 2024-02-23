@@ -86,8 +86,6 @@ public class ContentsController {
 			String result = "SUCCESS";
 			String resultMsg = "삭제 되었습니다.";
 			
-			
-			
 			// 그룹코드 삭제
 			contentsService.deleteContents(paramMap);
 			
