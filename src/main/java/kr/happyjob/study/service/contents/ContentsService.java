@@ -39,5 +39,8 @@ public class ContentsService {
 		return contentsMapper.updateContents(paramMap);				
 	}
 
+	public int deleteContents(Map<String, Object> paramMap) {
+		return contentsMapper.deleteContents(paramMap);					
+	}
 
 }

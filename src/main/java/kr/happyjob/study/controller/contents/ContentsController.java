@@ -1,7 +1,6 @@
 package kr.happyjob.study.controller.contents;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -78,4 +76,25 @@ public class ContentsController {
 			    return resultMap;
 			}
 	
+	// 글 삭제
+		@RequestMapping("/api/contentsDelete")
+		public Map<String, Object> contentsDelete(@RequestBody Map<String, Object> paramMap) throws Exception {
+			
+			logger.info("+ Start " + className + ".noticeDelete");
+			logger.info("   - paramMap : " + paramMap);
+
+			String result = "SUCCESS";
+			String resultMsg = "삭제 되었습니다.";
+			
+			// 그룹코드 삭제
+			contentsService.deleteContents(paramMap);
+			
+			Map<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("result", result);
+			resultMap.put("resultMsg", resultMsg);
+			
+			logger.info("+ End " + className + ".noticeDelete");
+			
+			return resultMap;
+		}
 }
