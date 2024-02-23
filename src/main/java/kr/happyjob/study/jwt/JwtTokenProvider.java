@@ -1,4 +1,4 @@
-package kr.happyjob.study.service.auth;
+package kr.happyjob.study.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -51,6 +51,7 @@ public class JwtTokenProvider {
             // 만료된 토큰
             return false;
         } catch (JwtException e) {
+            e.printStackTrace();
             throw new IllegalStateException("올바른 토큰이 아닙니다");
         }
     }
