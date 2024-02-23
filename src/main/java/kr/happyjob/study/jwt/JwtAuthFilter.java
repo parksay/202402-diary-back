@@ -29,17 +29,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        logger.info("###################################### REQUEST HEADER #################################");
-//        logger.info(request.getRequestURI());   //>> "/api/auth/test"
-//        logger.info(String.valueOf(request.getRequestURL())); //>> "http://localhost/api/auth/test "
-//        logger.info(request.getMethod()); //>> "GET" / "POST" / "UPDATE" / .....
-//        Enumeration<String> headerNames  = request.getHeaderNames();  //>> header 에 들어 있는 key 들 꺼내기
-//        logger.info(request.getHeader("Authorization"));  //>> header 에 어떤 key 로 들어 있는 value 받아오기
-//        while(headerNames.hasMoreElements()) {
-//            String item = headerNames.nextElement();
-//            logger.info(item);
-//        }
-//        logger.info("###################################### REQUEST HEADER #################################");
+        logger.info("###################################### REQUEST HEADER #################################");
+        logger.info(request.getRequestURI());   //>> "/api/auth/test"
+        logger.info(String.valueOf(request.getRequestURL())); //>> "http://localhost/api/auth/test "
+        logger.info(request.getMethod()); //>> "GET" / "POST" / "UPDATE" / .....
+        Enumeration<String> headerNames  = request.getHeaderNames();  //>> header 에 들어 있는 key 들 꺼내기
+        logger.info(request.getHeader("Authorization"));  //>> header 에 어떤 key 로 들어 있는 value 받아오기
+        String token = null;
+        while(headerNames.hasMoreElements()) {
+            String key = headerNames.nextElement();
+            String val = request.getHeader(key);
+            logger.info(key);
+            logger.info(val);
+            if(val.startsWith("Bearer ")) {
+                token = val;
+            }
+
+        }
+        logger.info("###################################### REQUEST HEADER #################################");
 
         List<String> targetList = null;     // 로그인 안 해도 되는 페이지 주소 리스트
         String uri = request.getRequestURI();   // 클라이언트가 요청한 주소
@@ -54,7 +61,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
         if(!(targetList != null && targetList.contains(uri))) {
             // 로그인 해야 하는 페이지인 경우 - 요청한 header 로부터 로큰 꺼내서 로그인 여부 확인
-            String token = request.getHeader("Authorization");
             if(!(token != null && token.startsWith("Bearer ") && jwtProvider.isValidToken(token.substring(7)))) {
                 // 유효한 토큰이 아닌 경우
                 logger.info("####################################### auth check ###################################");
