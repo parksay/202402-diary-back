@@ -56,7 +56,7 @@ public class JwtTokenProvider {
         }
     }
 
-    public Claims extractPayload(String token) {
+    private Claims extractPayload(String token) {
         return Jwts.parser()
                 .verifyWith(key)
                 .build()
@@ -72,7 +72,7 @@ public class JwtTokenProvider {
         return this.extractPayload(token).getIssuer();
     }
 
-    public Object extractCustom(String token, String key) {
+    public Object extractClaim(String token, String key) {
         return this.extractPayload(token).get(key);
     }
 
