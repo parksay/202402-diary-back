@@ -20,5 +20,6 @@ public interface FolderMapper {
 	
 	void folderDelete(Map<String, Object> vo);
 	
+	void folderContentsDelete(Map<String, Object> vo);
 }
 

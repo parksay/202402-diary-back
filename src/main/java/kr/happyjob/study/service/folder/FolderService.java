@@ -42,6 +42,7 @@ public class FolderService {
 	}
 	
 	public void folderDelete(Map<String, Object> vo) {
+		mapper.folderContentsDelete(vo);
 		mapper.folderDelete(vo);
 	}
 	
