@@ -55,4 +55,9 @@
 		DELETE FROM tb_folder
 		      WHERE folder_seq = #{folder_seq}
 	</delete>
+	
+	<delete id = "folderContentsDelete" parameterType="java.util.Map">
+		DELETE FROM tb_contents
+		      WHERE folder_seq = #{folder_seq}
+	</delete>
 </mapper>

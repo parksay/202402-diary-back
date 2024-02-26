@@ -68,13 +68,13 @@
 
 	</select>	
 	
-<!--	 글 삭제
-	<delete id="deleteNotice" parameterType="java.util.Map">
-		/*kr.happyjob.study.repository.notice.NoticeMapper.deleteNotice*/
+	<!-- 글 삭제-->
+	<delete id="deleteContents" parameterType="java.util.Map">
+		/*kr.happyjob.study.repository.contents.ContentsMapper.contentsDelete*/
 		DELETE
-		FROM 	tb_notice
-		WHERE 	ntc_no = #{noticeNo}
+		FROM tb_contents 
+		WHERE contents_seq = #{contents_seq}
 	</delete>
-   -->
+   
          
 </mapper>
